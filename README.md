@@ -27,7 +27,7 @@ I am not responsible for the damage you might cause.
 ## Dependencies 
 
 Tested with Ubuntu 21.10:
-* 1.3.0 (And older version): Doesn't compile
+* 1.3.0 (And older versions): Doesn't compile
 * 1.4.0: Compiled successfully & Worked
 * 1.5.0: Compiled successfully & Worked
 
